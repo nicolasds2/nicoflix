@@ -1,0 +1,47 @@
+.movie-list {
+    max-width: 800px;
+    margin: 14px auto;
+}
+
+.movie-list article {
+    width: 100%;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.movie-list strong {
+    margin-bottom: 14px;
+    font-size: 22px;
+    text-align: center;
+    display: block;
+}
+.movie-list img {
+    width: 900px;
+    max-width: 100%;
+    max-height: 340px;
+    object-fit: cover;
+    display: block;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.movie-list a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 24px;
+    background-color: #116feb;
+    text-decoration: none;
+    color: #fff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 14px;
+}
