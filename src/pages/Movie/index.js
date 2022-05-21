@@ -1,15 +1,18 @@
 import {useEffect, useState} from 'react';
-import {useParams, useNavigate, Navigate} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import './movie.css'
+
 function Movie () {
+    // get params from url
     const {id} = useParams();
     const [loading, setLoading] = useState(true);
     const [movie, setMovie] = useState({});
     const navigation = useNavigate();
 
     useEffect(() => {
+        // fetch by the specific movie
         async function loadMovie () {
             await api.get(`/movie/${id}`, {
                 params: {
@@ -17,7 +20,7 @@ function Movie () {
                     language: 'en',
                     page: 1
                 }
-            })
+            }) // if succeed, then set data to setMovie
             .then ((response) => {
                 setMovie(response.data)
                 setLoading(false)
@@ -41,7 +44,9 @@ function Movie () {
         const myList = localStorage.getItem('@NicoFlix');
         // initialize var with local storage list or empty list
         let savedMovies = JSON.parse(myList) || [];
-        // some() allows us to do a query. The return is boolean
+
+        // some() allows us to do a boolean query.
+        //The goal is check if movie is already added in savedMovies
         const hasMovie = savedMovies.some((savedMovies) => savedMovies.id === movie.id)
         if (hasMovie) {
             toast.warn("Already added into your list!")

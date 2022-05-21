@@ -8,6 +8,8 @@ import './home.css';
 function Home () {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    // Load movies from API when page is loaded
     useEffect(() => {
         async function loadMovies () {
             const response = await api.get('/movie/now_playing', {
@@ -17,17 +19,18 @@ function Home () {
                     page: 1
                 }
             })
-            // console.log(response.data.results.slice(0,10))
+            // Fetch only for the top 10
             setMovies(response.data.results.slice(0,10))
             setLoading(false)
         }
         loadMovies()
     }, [])
 
+    // Show a load screen while movie list is loading
     if (loading) {
         return (
             <div className='loading'>
-                <h2> Carregando filmes...</h2>
+                <h2> Loading movies...</h2>
             </div>
         )
     }
@@ -36,6 +39,7 @@ function Home () {
         <div className='container'>
             <div className='movie-list'>
                 {
+                    // Iterate through movies list to print it to the user
                     movies.map(movie => {
                         return (
                             <article key={movie.id}>
